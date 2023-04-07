@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  - let gadgets=[{gadget_type:"Laptop",gadget_price:"2000.00",gadget_version:"10"},{gadget_type:"Mobile",gadget_price:"1000.00",gadget_version:"Galaxy Tab S8"},{gadget_type:"Watch",gadget_price:"3000.00",gadget_version:"iWatch series 6"}]
+    
+    div(class="container-fluid mt-3")
+    div(class="row")
+        each gadget,index in gadgets
+            div(class="col-sm-3 bg-warning m-2 p-4" onclick=`buy(${index})`) #{gadget.gadget_type} - #{gadget.gadget_price} - #{gadget.gadget_version}
+    
+    
+    script.
+     
+      function buy(itemNo)
+      {
+        alert(`You purchased Item ${itemNo+1}`)
+      }

@@ -1,0 +1,22 @@
+{
+  "name": "s23wb87vemula",
+  "version": "1.2.3",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "mongodb": "^5.2.0",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
+  },
+  "main": "app.js",
+  "author": "Mounitha Vemula",
+  "license": "ISC",
+  "description": ""
+}

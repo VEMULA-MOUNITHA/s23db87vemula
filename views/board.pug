@@ -1,0 +1,31 @@
+extends layout
+block content
+  h1= title
+  p Rows: #{query.rows}, Columns: #{query.cols}
+  - var rows=Number(query.rows);
+  - var cols=Number(query.cols);
+  if !Number.isInteger(rows)
+    p Entered rows value is not an integer rows
+  else if !Number.isInteger(cols)
+    p Entered columns value is not an integer
+  else if rows<1||rows>10
+    p Entered rows value is out of range  
+  else if cols<1||cols>10
+    p Entered columns value is out of range  
+  else
+    table#outer
+      - for(let i=0; i<rows; i++) {
+          tr#middle
+            - for(let j=0; j<cols; j++) {
+                if i==j 
+                    td= 1
+                    td= " "
+                else if j>i
+                    td= j-i+1
+                    td= " "
+                else  
+                    td= 0
+                    td= " "
+               
+            -}
+      - }
