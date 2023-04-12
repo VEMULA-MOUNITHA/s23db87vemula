@@ -5,13 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var gadget = require("./models/gadget");
 
+
 require('dotenv').config();
 const connectionString =
 process.env.MONGO_CON
 mongoose = require('mongoose');
 mongoose.connect(connectionString,
-{useNewUrlParser: true,
-useUnifiedTopology: true});
+{
+  useNewUrlParser: true,
+   useUnifiedTopology: true
+});
 
 //Get the default connection
 var db = mongoose.connection;
@@ -26,6 +29,7 @@ var usersRouter = require('./routes/users');
 var gadgetsRouter = require('./routes/gadget');
 var boardsRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
+var resourceRouter =  require("./routes/resource");
 
 var app = express();
 
@@ -44,6 +48,7 @@ app.use('/users', usersRouter);
 app.use('/gadget', gadgetsRouter);
 app.use('/board', boardsRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 
 // We can seed the collection if needed on server start
@@ -52,32 +57,36 @@ async function recreateDB(){
  await gadget.deleteMany();
  
  let instance1 = new
- gadgets({
-   gadget_type:"Television",gadget_price :2000.00,gadget_version:"Samsung S95B OLED"
+ gadget({
+   gadget_type:"Laptop",
+   gadget_price :2000.00,
+   gadget_version:"Samsung S95B OLED"
  });
- instance1.save( function(err,doc) {
-     if(err) return console.error(err);
-     console.log("First object saved")
-   });
+instance1.save().then(()=>{
+  console.log("First object saved")
+}).catch((err)=>{
+  console.log(err);
+})
 
-  /** let instance2 = new
- gadgets({
-   gadget_type:"Phone",gadget_price :5000.00,gadget_version:"Apple 13 pro"
- 
+let instance2 = new
+ gadget({
+   gadget_type:"Phone",gadget_price :5000.00,gadget_version:"Apple 13 pro" 
  });
-instance2.save( function(err,doc) {
-     if(err) return console.error(err);
-     console.log("Second object saved")
-   });
+instance2.save().then(()=>{
+  console.log("Second object saved")
+}).catch((err)=>{
+  console.log(err);
+});
 
-   let instance3 = new
- gadgets({
+let instance3 = new
+ gadget({
    gadget_type:"Tablet",gadget_price :7000,gadget_version:"iPAD 12"
  });
- instance3.save( function(err,doc) {
-     if(err) return console.error(err);
-     console.log("Third object saved")
-   });*/
+ instance3.save().then(()=>{
+  console.log("Third object saved")
+}).catch((err)=>{
+  console.log(err);
+});
 }
 let reseed = true;
 if (reseed) { recreateDB();}

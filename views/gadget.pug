@@ -2,8 +2,7 @@ extends layout
 
 block content
   h1= title
-  - let gadgets=[{gadget_type:"Laptop",gadget_price:"2000.00",gadget_version:"10"},{gadget_type:"Mobile",gadget_price:"1000.00",gadget_version:"Galaxy Tab S8"},{gadget_type:"Watch",gadget_price:"3000.00",gadget_version:"iWatch series 6"}]
-    
+  - let gadgets = results  
     div(class="container-fluid mt-3")
     div(class="row")
         each gadget,index in gadgets
