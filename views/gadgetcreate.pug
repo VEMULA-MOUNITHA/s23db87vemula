@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  h1= title
+
+  form(id='gadgetForm', action="/resource/gadgets/", method="POST")
+    br
+    div.form-group
+        label.gadgetsAttr(for='gadget_type') gadget type
+        input#gadgettype(type='text', name='gadget_type')
+    br
+    div.form-group
+        label.gadgetsAttr(for='gadget_price') gadget price
+        input#gadgetprice(type='number', name='gadget_price')
+    br
+    div.form-group
+        label.gadgetsAttr(for='gadget_version') gadget version
+        input#gadgetversion(type='text', name='gadget_version')
+    br
+    input(type="submit" class="btn btn-danger")
+
+  script.
+    document.forms['gadgetForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error )
+      });
+    });
