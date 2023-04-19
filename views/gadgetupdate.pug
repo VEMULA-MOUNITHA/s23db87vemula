@@ -18,13 +18,13 @@ block content
         - let actionid = "/resource/gadgets/" + gadgetid
         form(id='gadgetForm', action= actionid, method="PUT")
             div.form-group
-                label.gadgetAttr(for='gadget_type') gadget type
+                label.gadgetsAttr(for='gadget_type') gadget type
                 input#gadgettype(type='text' name='gadget_type', value= gadget_type )
             div.form-group
-                label.gadgetAttr(for='gadget_price') gadget price
+                label.gadgetsAttr(for='gadget_price') gadget price
                 input#gadgetprice(type='number' name='gadget_price', value= gadget_price )
             div.form-group
-                label.gadgetAttr(for='gadget_version') gadget version
+                label.gadgetsAttr(for='gadget_version') gadget version
                 input#gadgetversion(type='text' name='gadget_version', value= gadget_version )
             input(type="submit" class = "btn btn-danger")
 
