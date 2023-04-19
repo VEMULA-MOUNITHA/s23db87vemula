@@ -3,24 +3,25 @@ extends layout
 block content
   h1= title
 
-  form(id='gadgetForm', action="/resource/gadgets/", method="POST")
+  form(id='gadgetsForm', action="/resource/gadgets", method="POST")
     br
     div.form-group
         label.gadgetsAttr(for='gadget_type') gadget type
-        input#gadgettype(type='text', name='gadget_type')
+        input#gadget_type(type='text', name='gadget_type')
     br
     div.form-group
         label.gadgetsAttr(for='gadget_price') gadget price
-        input#gadgetprice(type='number', name='gadget_price')
+        input#gadget_price(type='number', name='gadget_price')
     br
     div.form-group
         label.gadgetsAttr(for='gadget_version') gadget version
-        input#gadgetversion(type='text', name='gadget_version')
+        input#gadget_version(type='text', name='gadget_version')
     br
+    
     input(type="submit" class="btn btn-danger")
 
   script.
-    document.forms['gadgetForm'].addEventListener('submit', (event) => {
+    document.forms['gadgetsForm'].addEventListener('submit', (event) => {
       event.preventDefault();
       // TODO do something here to show user that form is being submitted
       fetch(event.target.action, {

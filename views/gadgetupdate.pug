@@ -6,17 +6,17 @@ block content
     if (toShow == null)
         h2 No instance to update
     else
-        - let gadgetid = toShow._id
-        - let gadgettype = toShow.gadget_type
+        -let gadgetid = toShow._id
+        -let gadgettype = toShow.gadget_type
         - let gadgetprice = toShow.gadget_price
         - let gadgetversion = toShow.gadget_version
         
 
-            div.row(class='gadgetAttr mb-2')
-            div.mr-1 ID is
-            div #{gadgetid}
-            - let actionid = "/resource/gadget/" + gadgetid
-            form(id='gadgetForm', action= actionid, method="PUT")
+        div.row(class='gadgetAttr mb-2')
+        div.mr-1 ID is
+        div #{gadgetid}
+        - let actionid = "/resource/gadgets/" + gadgetid
+        form(id='gadgetForm', action= actionid, method="PUT")
             div.form-group
                 label.gadgetAttr(for='gadget_type') gadget type
                 input#gadgettype(type='text' name='gadget_type', value= gadget_type )
@@ -31,6 +31,7 @@ block content
     script.
             document.forms['gadgetForm'].addEventListener('submit', (event) => {
                 event.preventDefault();
+                console.log('sjgdf')
                 // TODO do something here to show user that form is being submitted
                 fetch(event.target.action, {
                 method: 'PUT',

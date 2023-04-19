@@ -1,8 +1,25 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "'Courier New', Courier, monospace";
 }
+.gadgetsAttr { 
+  background-color:darkmagenta; 
+  color:coral;
+  width : 200px; 
+  font-size: medium;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align:center;
 
+}
+h1 {
+  color: magenta;
+  background-color: lightblue;
+  font-size:xx-large;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align:start;
+  font-style: italic;
+}
 a {
   color: #00B7FF;
 }
+

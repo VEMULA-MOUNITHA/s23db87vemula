@@ -12,10 +12,15 @@ exports.gadget_list = async function (req, res) {
 };
 // for a specific gadgets.
 exports.gadget_detail = async function (req, res) {
+    console.log("inside detail")
     console.log("detail" + req.params.id)
     try {
-        result = await gadget.findById(req.params.id)
-        res.send(result)
+        result = await gadget.findById(req.query.id)
+
+        // res.send(result)
+        console.log(req.query)
+        res.render('gadgetdetail', { title: 'gadget Detail', toShow: result });
+
     } catch (error) {
         res.status(500)
         res.send(`{"error": document for id ${req.params.id} not found`);
@@ -109,24 +114,27 @@ exports.gadget_view_one_Page = async function (req, res) {
 // Handle building the view for creating a gadgets.
 // No body, no in path parameter, no query.
 // Does not need to be async
-exports.gadget_create_Page =  function(req, res) {
+exports.gadget_create_Page = function(req, res) {
     console.log("create view")
     try{
-        res.render('gadgetcreate', { title: 'gadget Create'});
+    res.render('gadgetcreate', { title: 'gadget Create'});
     }
     catch(err){
-        res.status(500)
-        res.send(`{'error': '${err}'}`);
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
     }
-};
+   };
 
 // Handle building the view for updating a gadgets.
 // query provides the id
 exports.gadget_update_Page =  async function(req, res) {
+   
     console.log("update view for item "+req.query.id)
     try{
-        let result = await gadgets.findById(req.query.id)
-        res.render('gadgetupdate', { title: 'gadget Update', toShow: result });
+       let result = await gadget.findById(req.query.id)
+        console.log()
+        res.render('gadgetupdate', { title: 'gadget Update', toShow: result});
+        
     }
     catch(err){
         res.status(500)
@@ -134,15 +142,16 @@ exports.gadget_update_Page =  async function(req, res) {
     }
 };
 
-// Handle a delete one view with id from query
+/// Handle a delete one view with id from query
 exports.gadget_delete_Page = async function(req, res) {
-    console.log("Delete view for id "  + req.query.id)
+    console.log("Delete view for id " + req.query.id)
     try{
-        result = await gadgets.findById(req.query.id)
-        res.render('gadgetdelete', { title: 'gadget Delete', toShow: result });
+    result = await gadget.findById(req.query.id)
+    res.render('gadgetdelete', { title: 'Gadget Delete', toShow:
+   result });
     }
     catch(err){
-        res.status(500)
-        res.send(`{'error': '${err}'}`);
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
     }
-};
+   };

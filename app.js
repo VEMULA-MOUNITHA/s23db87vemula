@@ -106,7 +106,7 @@ let instance3 = new
   console.log(err);
 });
 }
-let reseed = true;
+let reseed = false;
 if (reseed) { recreateDB();}
 
 

@@ -1,18 +1,18 @@
 var express = require('express');
 const gadget_controlers= require('../controllers/gadget');
 var router = express.Router();
-/* GET gadgets */
+
 router.get('/', gadget_controlers.gadget_view_all_Page );
 module.exports = router;
 
 
+// router.get('/detail', gadget_controlers.gadget_detail);
 
-//var express = require('express');
-//var router = express.Router();
+router.get('/gadgets', gadget_controlers.gadget_list);
 
-/* GET home page. */
-//router.get('/', function(req, res, next) {
-  //res.render('gadget', { title: 'Search Results'});
-//});
+router.get('/detail/', gadget_controlers.gadget_detail);
 
-//module.exports = router;
+router.get('/create', gadget_controlers.gadget_create_Page);
+router.get('/update', gadget_controlers.gadget_update_Page);
+router.get('/delete', gadget_controlers.gadget_delete_Page);
+module.exports = router;
