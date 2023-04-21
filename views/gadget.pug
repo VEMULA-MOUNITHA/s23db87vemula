@@ -1,17 +1,17 @@
-extends layout
+extends layout 
 
-block content
-  h1= title
-  - let gadgets = results  
-    div(class="container-fluid mt-3")
-    div(class="row")
-        each gadget,index in gadgets
-            div(class="col-sm-3 bg-warning m-2 p-4" onclick=`buy(${index})`) #{gadget.gadget_type} - #{gadget.gadget_price} - #{gadget.gadget_version}
-    
-    
-    script.
-     
-      function buy(itemNo)
-      {
-        alert(`You purchased Item ${itemNo+1}`)
-      }
+block content 
+    h1= title
+    div.container-fluid
+        - let destn1 = `dispatch(\"/gadget/create")`
+        //button.btn( class="btn-secondary ml-1", onclick = destn1) Create
+        div(class ="row m-1")
+            each item, index in results
+                div.col-sm-2(onclick=`buy(${index})`) #{item["gadget_type"]}, #{item["gadget_price"]}, #{item["gadget_version"]}
+                    br
+                    button.btn( class="btn-primary ml-1", onclick= destination) Update
+
+    script. 
+        function dispatch(path) {
+            window.location.href=path
+        }
