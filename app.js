@@ -5,7 +5,7 @@ var mongoose = require('mongoose')
 var mongodb = require('mongodb')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var gadget = require("./models/gadget");
+//var gadget = require("./models/gadget");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -60,7 +60,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(require('express-session')({
   secret: 'keyboard cat',
   resave: false,
@@ -68,6 +67,7 @@ app.use(require('express-session')({
  }));
  app.use(passport.initialize());
  app.use(passport.session());
+ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
