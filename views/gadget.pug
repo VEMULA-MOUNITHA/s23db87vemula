@@ -4,11 +4,19 @@ block content
   h1= title
   - let gadgets = results
   div(claass="container-fluid mt-3")
+   - let destn1 = `dispatch(\"/gadget/create")`
+   button.btn( class="btn-secondary ml-1", onclick = destn1) Create
    div(class="row m-1")
     each gadget,index in gadgets
-     - let destination = `dispatch(\"/gadget/update?id=${gadget ._id}\")`
-     div(class="col-sm-3 bg-success m-2 p-4" onclick=`buy(${index})`) #{gadget.gadget_type} - #{gadget.gadget_price} - #{gadget.gadget_version}
-      button.btn( class="btn-primary ml-1", onclick= destination) Update
+        - let destination = `dispatch(\"/gadget/update?id=${gadget ._id}\")`
+        - let destn2 = `dispatch(\"/gadget/delete?id=${gadget._id}\")`
+        - let destn3 = `dispatch(\"/gadget/detail?id=${gadget._id}\")`
+        div(class="col-sm-3 bg-success m-2 p-4" onclick=`buy(${index})`) #{gadget.gadget_type} - #{gadget.gadget_price} - #{gadget.gadget_version}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+          br
+          button.btn( class="btn-danger ml-1", onclick= destn2) Delete
+          br
+          button.btn( class="btn-info ml-1", onclick= destn3) Details
   script.
    function buy(itemNo)
    {
